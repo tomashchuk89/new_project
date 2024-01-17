@@ -21,7 +21,8 @@ const Card = ({ data }) => {
               </li>
             ))}
           </ul>
-          <p className="price" style={{ fontWeight: soldOut ? '300' : '600' }}> $ {unitPrice}</p>
+          <p className="price" >
+          { (soldOut) ? 'SOLD OUT' : `$ ${unitPrice}` } </p>
         </div>
         <div className="btn-conteiner">
             { (soldOut) ? '' : <button className="btn">ADD TO CART</button> }
