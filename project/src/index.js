@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom';
-import UserInfoContext from './components/context/UserInfoContext';
+import UserInfoContext from './context/UserInfoContext';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

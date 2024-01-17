@@ -1,0 +1,48 @@
+.conteiner {
+    margin: 0 auto;
+    max-width: 1000px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+
+}
+
+.image {
+    max-width: 100px;
+    height: 100px;
+}
+
+.context {
+    width: 700px;
+    margin-left: 0px;
+}
+
+.text {
+    margin-left: 5px;
+    max-width: 200px;
+}
+
+.ingredient {
+    display: flex;
+    list-style: none;
+}
+
+.price {
+    margin-top: 30px;
+    max-width: 200px;
+}
+
+.item {
+    margin-left: 5px;
+}
+
+.btn {
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 10px;
+    background: rgb(231, 191, 10);
+}
+
+.btn:hover {
+    background: rgb(112, 231, 33);
+}

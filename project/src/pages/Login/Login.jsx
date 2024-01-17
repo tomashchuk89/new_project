@@ -1,53 +1,44 @@
-import React from 'react';
-import { useState, useContext } from 'react';
-import  {UserContext} from '../../components/context/UserInfoContext';
-import './Login.css';
+import React from "react";
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import Button from "../../components/Button/Button";
+import Input from "../../components/Input/Input";
+import { UserContext } from "../../context/UserInfoContext";
 
+import "./Login.css";
 
 const Login = () => {
-
-  const [userName, setUserName] = useState('');
+  const navigate = useNavigate();
+  const [userName, setUserName] = useState("");
   const { setName } = useContext(UserContext);
 
   const handleSubmitLogin = (e) => {
     e.preventDefault();
-    if (userName) { 
+    if (userName) {
       setName(userName);
-      console.log('USER NAME:', userName);
-      setUserName('')
+      console.log("USER NAME:", userName);
+      setUserName("");
+      navigate("/menu");
     } else {
-      console.log('Write a username!')
+      console.log("Write a username!");
     }
   };
 
   const handleChangeLogin = (e) => {
-    setUserName(e.target.value)
-  }
-
+    setUserName(e.target.value);
+  };
 
   return (
     <>
-      <div className='bg-log'>
-        <form className='form' onSubmit={handleSubmitLogin}>
-          <label className='name-form'>User Name </label> <br />
-
-          <input
-            className='input-form'
-            type="text"
-            pattern="[A-Za-z0-9]+"
-            minLength="3"
-            maxLength="10"
-            value={userName}
-            onChange={handleChangeLogin}
-          />
-
-          <button className='btn-form' type="submit" >
-            Log in
-          </button>
+      <div className="bg-log">
+        <form className="form" onSubmit={handleSubmitLogin}>
+          <label className="name-form">User Name </label> <br />
+          <Input userName={userName} handleChangeLogin={handleChangeLogin} />
+          <Button />
         </form>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
