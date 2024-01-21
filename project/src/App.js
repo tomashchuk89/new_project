@@ -2,9 +2,13 @@ import { Route, Routes, NavLink } from "react-router-dom";
 import "./App.css";
 import Login from "./pages/Login/Login";
 import Menu from "./pages/Menu/Menu";
+import Cart from "./pages/Cart/Cart";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
+import { useSelector } from "react-redux";
 
 function App() {
+  const items = useSelector((state) => state.cart.items);
+  const totalQuantity = items.reduce((acc, item) => acc + item.qty, 0);
   return (
     <div className="App">
       <nav>
@@ -14,11 +18,15 @@ function App() {
         <NavLink to="/menu">
           <span className="header"> Menu </span>
         </NavLink>
+        <NavLink to="/cart">
+          <span className="header"> Cart({totalQuantity}) </span>
+        </NavLink>
       </nav>
 
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/menu" element={<Menu />} />
+        <Route path="/cart" element={<Cart />} />
 
         <Route path="*" element={<PageNotFound />} />
       </Routes>

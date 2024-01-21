@@ -1,15 +1,14 @@
 import React from "react";
 import Card from "../../components/Card/Card";
-import { useState, useEffect, useContext } from "react";
-import { UserContext } from "../../context/UserInfoContext";
+import { useState, useEffect} from "react";
 import "./Menu.css";
+import Header from "../../components/Header/Header";
 
 const Menu = () => {
-  const { names } = useContext(UserContext);
   const [pizzas, setPizzas] = useState([]);
 
   useEffect(() => {
-    const getUsers = async () => {
+    const getPizzas = async () => {
       try {
         const res = await fetch(
           "https://react-fast-pizza-api.onrender.com/api/menu"
@@ -23,14 +22,12 @@ const Menu = () => {
         console.error(e.message);
       }
     };
-    getUsers();
+    getPizzas();
   }, []);
 
   return (
     <>
-      <div className="header-bg">
-        <h2 className="login-name">User Name: {names} </h2>
-      </div>
+    <Header/>
 
       {pizzas.map((pizza) => (
         <Card key={pizza.id} data={pizza} />

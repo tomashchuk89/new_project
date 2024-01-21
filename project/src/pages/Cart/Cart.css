@@ -1,0 +1,71 @@
+.main-cart {
+    width: 700px;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+
+
+.main-cart li {
+    list-style: none;
+}
+
+.btn-back {
+    border: none;
+    background: #fff;
+    margin-top: 50px;
+
+}
+
+.btn-back:hover {
+    color: rgb(94, 97, 97);
+}
+
+.namee-btn-back::before {
+    content: '';
+    background: url(../Cart/img/right-arrow.png\ \(2\)) no-repeat;
+    width: 23px;
+    height: 23px;
+    left: -25px;
+    top: px;
+    position: absolute;
+}
+
+
+.namee-btn-back {
+    font-size: 15px;
+    margin-left: 7px;
+    position: relative;
+}
+
+.btn-order-clear {
+    margin-top: 50px;
+}
+
+.btn-order {
+    width: 150px;
+    height: 60px;
+    margin-right: 50px;
+    font-size: 18px;
+    font-weight: 700;
+    background: rgb(231, 191, 10);
+    border-radius: 10px;
+
+}
+
+.btn-clear {
+    width: 150px;
+    height: 60px;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 10px;
+
+}
+
+.btn-order:hover {
+    background: rgb(112, 231, 33);
+}
+
+.btn-clear:hover {
+    background: rgb(233, 40, 14);
+}

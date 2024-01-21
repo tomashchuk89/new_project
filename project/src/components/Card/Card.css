@@ -25,6 +25,7 @@
 .ingredient {
     display: flex;
     list-style: none;
+    margin-left: 15px;
 }
 
 .price {
@@ -32,9 +33,6 @@
     max-width: 200px;
 }
 
-.item {
-    margin-left: 5px;
-}
 
 .btn {
     padding: 15px;
