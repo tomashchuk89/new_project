@@ -27,7 +27,6 @@ const Menu = () => {
   return (
     <>
       <Header />
-      {isError && <h1>ERROR</h1>}
 
       {!!menuItems &&
         menuItems.map((pizza) => <Card key={pizza.id} data={pizza} />)}
