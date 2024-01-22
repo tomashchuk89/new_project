@@ -1,37 +1,36 @@
 import React from "react";
 import Card from "../../components/Card/Card";
-import { useState, useEffect} from "react";
+import { useEffect } from "react";
 import "./Menu.css";
 import Header from "../../components/Header/Header";
+import { useDispatch, useSelector } from "react-redux";
+import { getMenu } from "../../redux/slice/menuSlise";
+import Loader from "../../components/Loader/Loader";
+import Error from "../../components/Error/Error";
 
 const Menu = () => {
-  const [pizzas, setPizzas] = useState([]);
+  const dispatch = useDispatch();
+  const { isLoading, isError, menuItems } = useSelector((state) => state.menu);
 
   useEffect(() => {
-    const getPizzas = async () => {
-      try {
-        const res = await fetch(
-          "https://react-fast-pizza-api.onrender.com/api/menu"
-        );
-        if (!res.ok) {
-          throw new Error("Failed to fetch");
-        }
-        const { data } = await res.json();
-        setPizzas(data);
-      } catch (e) {
-        console.error(e.message);
-      }
-    };
-    getPizzas();
-  }, []);
+    dispatch(getMenu());
+  }, [dispatch]);
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (isError) {
+    return <Error />;
+  }
 
   return (
     <>
-    <Header/>
+      <Header />
+      {isError && <h1>ERROR</h1>}
 
-      {pizzas.map((pizza) => (
-        <Card key={pizza.id} data={pizza} />
-      ))}
+      {!!menuItems &&
+        menuItems.map((pizza) => <Card key={pizza.id} data={pizza} />)}
     </>
   );
 };
