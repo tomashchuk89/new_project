@@ -8,6 +8,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Cart.css";
 
+
 const Cart = () => {
   const navigate = useNavigate();
   const { names } = useContext(UserContext);
@@ -20,6 +21,14 @@ const Cart = () => {
   };
   const handleClearCart = () => {
     dispatch(clearCart())
+  }
+
+  const handleOrderCart =(e) => {
+    e.preventDefault();
+    // const soldOutCount = items.reduce((item, accumulator) => Object.values(item.soldOut) + accumulator, 0); 
+   
+    // console.log(soldOutCount)
+    navigate("/order/new/");
   }
 
   return (
@@ -38,10 +47,11 @@ const Cart = () => {
           </li>
         ))}
       </ul>
+      
       <div className="btn-order-clear">
         <button
           className="btn-order"
-          onClick={() => console.log("ORDER PIZZAS")}
+          onClick={handleOrderCart}
         >
           ORDER PIZZAS
         </button>

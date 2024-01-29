@@ -5,6 +5,7 @@ import Menu from "./pages/Menu/Menu";
 import Cart from "./pages/Cart/Cart";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import { useSelector } from "react-redux";
+import OrderNew from "./pages/OrderNew/OrderNew";
 
 function App() {
   const items = useSelector((state) => state.cart.items);
@@ -21,12 +22,16 @@ function App() {
         <NavLink to="/cart">
           <span className="header"> Cart({totalQuantity}) </span>
         </NavLink>
+        <NavLink to="/order/new">
+          <span className="header"> Order </span>
+        </NavLink>
       </nav>
 
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/order/new" element={<OrderNew />} />
 
         <Route path="*" element={<PageNotFound />} />
       </Routes>
