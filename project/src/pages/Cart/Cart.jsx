@@ -25,9 +25,6 @@ const Cart = () => {
 
   const handleOrderCart =(e) => {
     e.preventDefault();
-    // const soldOutCount = items.reduce((item, accumulator) => Object.values(item.soldOut) + accumulator, 0); 
-   
-    // console.log(soldOutCount)
     navigate("/order/new/");
   }
 
