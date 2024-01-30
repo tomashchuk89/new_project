@@ -9,7 +9,8 @@ import { useContext } from "react";
 import { useSelector } from "react-redux";
 import Header from "../../components/Header/Header";
 import "./OrderNew.css";
-
+import ButtonOrder from "../../components/ButtonOrder/ButtonOrder";
+import CheckBox from "../../components/CheckBox/CheckBox";
 
 const OrderNew = () => {
   const [isChecked, setIsChecked] = useState(false);
@@ -50,11 +51,7 @@ const OrderNew = () => {
             name="name"
             control={control}
             render={({ field }) => (
-              <label className="label-name">
-                {" "}
-                First Name
-                <Inputs {...field} placeholder="Name" />
-              </label>
+              <Inputs {...field} label="First Name" placeholder="Name" />
             )}
           />
         </div>
@@ -65,11 +62,11 @@ const OrderNew = () => {
             name="tel"
             control={control}
             render={({ field }) => (
-              <label>
-                {" "}
-                Phone number
-                <Inputs {...field} placeholder="+38067777777" />
-              </label>
+              <Inputs
+                {...field}
+                label="Phone number"
+                placeholder="+38067777777"
+              />
             )}
           />
         </div>
@@ -79,32 +76,22 @@ const OrderNew = () => {
             name="adress"
             control={control}
             render={({ field }) => (
-              <label className="label-address">
-                {" "}
-                Address
-                <Inputs
-                  {...field}
-                  placeholder="m.Kyiv, vul. Stecenko 17, ap 250"
-                />
-              </label>
+              <Inputs
+                {...field}
+                placeholder="m.Kyiv, vul. Stecenko 17, ap 250"
+                label="Address"
+              />
             )}
           />
         </div>
         {errors.adress && <p className="errors">{errors.adress.message}</p>}
         <div className="check-box">
-          <label>
-            <input
-              onChange={handleCheckboxChange}
-              checked={isChecked}
-              type="checkbox"
-            />
-            <span>Whan to yo give your order priority?</span>
-          </label>
+          <CheckBox
+            handleCheckboxChange={handleCheckboxChange}
+            isChecked={isChecked}
+          />
         </div>
-
-        <button className="btn-order-now" type="submit">
-          ORDER NOW FOR {totalSum} $
-        </button>
+        <ButtonOrder totalSum={totalSum} />
       </form>
     </div>
   );
