@@ -1,20 +1,26 @@
-import React from "react";
+import { forwardRef } from "react";
 import "./Input.css";
 
-const Input = ({ userName, handleChangeLogin }) => {
+const Input = forwardRef((props, ref) => {
+  const { value, onChange, onBlur, name, placeholder, label } = props;
+
   return (
     <>
-      <input
-        className="input-form"
-        type="text"
-        pattern="[A-Za-z0-9]+"
-        minLength="3"
-        maxLength="10"
-        value={userName}
-        onChange={handleChangeLogin}
-      />
+      <div className="input-container">
+        <label className="label-name">{label}</label>
+        <input
+          className="inputs"
+          placeholder={placeholder}
+          type="text"
+          value={value}
+          onChange={onChange}
+          onBlur={onBlur}
+          name={name}
+          ref={ref}
+        />
+      </div>
     </>
   );
-};
+});
 
 export default Input;

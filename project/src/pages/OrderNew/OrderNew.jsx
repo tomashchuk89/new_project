@@ -9,8 +9,8 @@ import { useContext } from "react";
 import { useSelector } from "react-redux";
 import Header from "../../components/Header/Header";
 import "./OrderNew.css";
-import ButtonOrder from "../../components/ButtonOrder/ButtonOrder";
 import CheckBox from "../../components/CheckBox/CheckBox";
+import Button from "../../components/Button/Button";
 
 const OrderNew = () => {
   const [isChecked, setIsChecked] = useState(false);
@@ -91,7 +91,7 @@ const OrderNew = () => {
             isChecked={isChecked}
           />
         </div>
-        <ButtonOrder totalSum={totalSum} />
+        <Button buttonText="ORDER NOW FOR" totalSum={totalSum} val='$'/>
       </form>
     </div>
   );
