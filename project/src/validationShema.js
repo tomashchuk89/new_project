@@ -1,5 +1,11 @@
 import * as yup from "yup";
 
+export const validationShemaName = yup.object().shape({
+  name: yup.string().required("Please enter a name"),
+});
+
+
+
 export const validationShema = yup.object().shape({
   name: yup.string().required("Please enter a name"),
   tel: yup

@@ -1,18 +1,18 @@
 import React from "react";
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import { UserContext } from "../../context/UserInfoContext";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { validationShema } from "../../validationShema";
-import Inputs from "../../components/Inputs/Inputs";
+import { validationShemaName } from "../../validationShema";
+import Input from "../../components/Input/Input";
 
 import "./Login.css";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [userName, setUserName] = useState("");
+
   const { setName } = useContext(UserContext);
 
   const {
@@ -22,52 +22,39 @@ const Login = () => {
     control,
   } = useForm({
     defaultValues: {
-      name: '' 
-    
+      name: "",
     },
-    resolver: yupResolver(validationShema),
+    resolver: yupResolver(validationShemaName),
   });
 
-
   const handleSubmitLogin = (data) => {
-
-    if (userName) {
-      setName(userName);
-      console.log("USER NAME:", userName);
+    if (data.name) {
+      setName(data.name);
       reset();
       navigate("/menu");
-    } 
-  }
-
-  const handleChangeLogin = (e) => {
-    setUserName(e.target.value);
- 
+    }
   };
-
-  
 
   return (
     <>
       <div className="bg-log">
         <form className="form" onSubmit={handleSubmit(handleSubmitLogin)}>
-        <div className="input-container">
-          <Controller
-            name="name"
-            control={control}
-            render={({ field }) => (
-              <Inputs {...field} label="User Name" 
-              value={userName}
-              onChange={handleChangeLogin}
-              placeholder="Name" 
-              />
-            )}
-          />
-        </div>
-        {errors.name && <p className="errors">{errors.name.message}</p>}
-
-
-          {/* <Input userName={userName} handleChangeLogin={handleChangeLogin} /> */}
-          <Button buttonText='Log In'/>
+          <div className="input-container">
+            <Controller
+              name="name"
+              control={control}
+              render={({ field }) => (
+                <Input
+                  {...field}
+                  type="text"
+                  label="User Name"
+                  placeholder="Name"
+                />
+              )}
+            />
+          </div>
+          {errors.name && <p className="errors">{errors.name.message}</p>}
+          <Button buttonText="Log In" />
         </form>
       </div>
     </>

@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import Inputs from "../../components/Inputs/Inputs";
+import Input from "../../components/Input/Input";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { validationShema } from "../../validationShema";
@@ -51,7 +51,7 @@ const OrderNew = () => {
             name="name"
             control={control}
             render={({ field }) => (
-              <Inputs {...field} label="First Name" placeholder="Name" />
+              <Input {...field} label="First Name" placeholder="Name" />
             )}
           />
         </div>
@@ -62,7 +62,7 @@ const OrderNew = () => {
             name="tel"
             control={control}
             render={({ field }) => (
-              <Inputs
+              <Input
                 {...field}
                 label="Phone number"
                 placeholder="+38067777777"
@@ -76,7 +76,7 @@ const OrderNew = () => {
             name="adress"
             control={control}
             render={({ field }) => (
-              <Inputs
+              <Input
                 {...field}
                 placeholder="m.Kyiv, vul. Stecenko 17, ap 250"
                 label="Address"
