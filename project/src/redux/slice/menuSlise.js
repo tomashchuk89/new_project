@@ -23,6 +23,8 @@ export const getMenu = createAsyncThunk("menu/getMenu", async () => {
   }
 });
 
+
+
 const menuSlise = createSlice({
   name: "menu",
   initialState: initialState,
@@ -43,3 +45,4 @@ const menuSlise = createSlice({
 });
 
 export default menuSlise.reducer;
+

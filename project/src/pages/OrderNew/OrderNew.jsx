@@ -1,18 +1,25 @@
 import React from "react";
-import { useState } from "react";
+import { useState} from "react";
 import Input from "../../components/Input/Input";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { validationShema } from "../../validationShema";
 import { UserContext } from "../../context/UserInfoContext";
 import { useContext } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch} from "react-redux";
 import Header from "../../components/Header/Header";
 import "./OrderNew.css";
 import CheckBox from "../../components/CheckBox/CheckBox";
 import Button from "../../components/Button/Button";
+import { useNavigate } from "react-router-dom";
+import {addUser} from "../../redux/slice/preperingSlise"
+
 
 const OrderNew = () => {
+
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
   const [isChecked, setIsChecked] = useState(false);
   const items = useSelector((state) => state.cart.items);
   const totalSum =
@@ -29,18 +36,45 @@ const OrderNew = () => {
       name: names,
       tel: "+380",
       adress: "",
+      checkbox: false,
     },
     resolver: yupResolver(validationShema),
   });
 
+  
   const onSubmit = (data) => {
-    console.log(data);
+    const {adress, name, tel, checkbox} = data
+    const cartData = [];
+    const newOrder = {
+      address: adress,
+      cart: cartData,
+      customer: name,
+      phone: tel,
+       position: "",
+      priority: checkbox, 
+    };
+
+    items.forEach((item) => {
+      let newCart = {
+        name: item.name,
+        pizzaId: item.id,
+        quantity: item.qty,
+        totalPrice: item.qty * item.unitPrice,
+        unitPrice: item.unitPrice,
+      };
+      cartData.push(newCart);
+    });
+    console.log(newOrder);
+
+    dispatch(addUser(newOrder));
     reset();
+    setIsChecked(false)
   };
 
-  const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
+  const handleCheckboxChange = (event) => {
+    setIsChecked(event.target.checked);
   };
+
   return (
     <div>
       <Header />
@@ -86,9 +120,19 @@ const OrderNew = () => {
         </div>
         {errors.adress && <p className="errors">{errors.adress.message}</p>}
         <div className="check-box">
+        <Controller
+            name="checkbox"
+            control={control}
+            render={({ field }) => (
           <CheckBox
-            handleCheckboxChange={handleCheckboxChange}
-            isChecked={isChecked}
+          {...field}
+          onChange={(e) => {
+            field.onChange(e);
+            handleCheckboxChange(e);
+          }}
+          checked={isChecked}
+          />
+          )}
           />
         </div>
         <Button buttonText="ORDER NOW FOR" totalSum={totalSum} val='$'/>
