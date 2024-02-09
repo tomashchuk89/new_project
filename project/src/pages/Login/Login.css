@@ -23,6 +23,17 @@
     border-radius: 5px;
 }
 
+.btn-login {
+    width: 200px;
+    height: 60px;
+    margin-right: 50px;
+    font-size: 16px;
+    font-weight: 700;
+    background: rgb(231, 191, 10);
+    border-radius: 10px;
+    margin-top: 50px;
+}
+
 .btn-form:hover {
    background-color: bisque;
 }

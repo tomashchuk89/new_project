@@ -10,3 +10,14 @@
     color: red;
     font-size: 15px;
 }
+
+.btn-order-cart {
+  width: 250px;
+  height: 60px;
+  margin-right: 50px;
+  font-size: 16px;
+  font-weight: 700;
+  background: rgb(231, 191, 10);
+  border-radius: 10px;
+  margin-top: 50px;
+}

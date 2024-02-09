@@ -2,10 +2,10 @@ import React from "react";
 import "./Button.css";
 
 const Button = (props) => {
-  const { buttonText, totalSum, val } = props;
+  const { buttonText, totalSum, val, onClick, className } = props;
   return (
     <>
-         <button className="btn-order-now" type="submit">
+         <button className={`btn ${className}`} type="submit" onClick={onClick}>
          {buttonText} {totalSum} {val}
         </button>
     </>

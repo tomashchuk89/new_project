@@ -26,9 +26,7 @@ function App() {
         <NavLink to="/order/new">
           <span className="header"> Order </span>
         </NavLink>
-        <NavLink to="/order/:id">
-          <span className="header"> OrderID </span>
-        </NavLink>
+      
       </nav>
 
       <Routes>
@@ -36,7 +34,7 @@ function App() {
         <Route path="/menu" element={<Menu />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/order/new" element={<OrderNew />} />
-        <Route path="/order/:oderId" element={<OrderId />} />
+        <Route path="/order/:id" element={<OrderId />} />
 
         <Route path="*" element={<PageNotFound />} />
       </Routes>

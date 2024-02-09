@@ -7,6 +7,7 @@ const initialState = {
   isError: null,
  
 };
+;
 
 export const addUser = createAsyncThunk("user/addUser", async (newUser) => {
   try {
@@ -19,10 +20,11 @@ export const addUser = createAsyncThunk("user/addUser", async (newUser) => {
     });
 
     if (!res.ok) {
-      throw new Error("Failed to add user");
+      throw new Error("Failed to add order");
     }
     const data = await res.json();
     return {data};
+ 
   } catch (e) {
     console.error(e.message);
     throw e;
@@ -38,11 +40,11 @@ const userSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(addUser.fulfilled, (state, action) => {
-      state.status = "succeeded";
+      state.status = "success";
       state.users.push(action.payload); 
     });
     builder.addCase(addUser.rejected, (state, action) => {
-      state.status = "failed";
+      state.status = "fail";
       state.isError = action.error.message;
     });
   },

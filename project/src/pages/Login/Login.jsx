@@ -54,7 +54,7 @@ const Login = () => {
             />
           </div>
           {errors.name && <p className="errors">{errors.name.message}</p>}
-          <Button buttonText="Log In" />
+          <Button buttonText="Log In" className="btn-login" />
         </form>
       </div>
     </>
