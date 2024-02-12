@@ -1,24 +1,24 @@
 import React from "react";
-import { forwardRef } from "react";
+import { useController } from "react-hook-form";
 import "./CheckBox.css";
 
-const CheckBox = forwardRef((props, ref) => {
-  const { checked,  onChange, onBlur, name } = props;
+const CheckBox = (props) => {
+  const { field } = useController(props);
+  const { onClick, label } = props;
   return (
     <div>
       <label>
         <input
-          onChange={onChange}
-          checked={checked}
+          {...field}
+          onClick={(e) => {
+            onClick(e.target.checked);
+          }}
           type="checkbox"
-          onBlur={onBlur}
-          name={name}
-          ref={ref}
         />
-        <span>Whan to yo give your order priority?</span>
+        <span>{label}</span>
       </label>
     </div>
   );
-});
+};
 
 export default CheckBox;

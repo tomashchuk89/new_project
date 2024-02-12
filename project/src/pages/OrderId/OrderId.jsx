@@ -36,11 +36,9 @@ const OrderId = () => {
           Order #{id} <span className="status-name">status: {status}</span>
         </h2>
         <div>
-          {priority ? (
+          {priority && 
             <Button className="btn-priority" buttonText="priority" />
-          ) : (
-            ""
-          )}
+          }
           <Button className="btn-status" buttonText="order" val={status} />
         </div>
       </div>
@@ -58,9 +56,8 @@ const OrderId = () => {
               <div>
                 <div className="name-in">
                   <p className="name-main">
-                    {" "}
                     <span className="amount-name">{item.quantity} x</span>
-                    {item.name}{" "}
+                    {item.name}
                   </p>
                   {item.addIngredients && (
                     <span className="ingredients">
@@ -76,15 +73,13 @@ const OrderId = () => {
       </ul>
       <div className="price-block">
         <p className="">Price pizza: $ {totalSum}</p>
-        {priority ? <div>Price priority: $ {price} </div> : ""}
+        {priority && <div>Price priority: $ {price} </div> }
         <p> To pay on delivery: $ {totalSumDel}</p>
       </div>
       <div className="btn-block-prioritize">
-        {priority ? (
-          ""
-        ) : (
+        {!priority &&
           <Button className="btn-prioritize" buttonText="prioritize" />
-        )}
+        }
       </div>
     </>
   );

@@ -1,19 +1,19 @@
 import * as yup from "yup";
 
 export const validationShemaName = yup.object().shape({
-  name: yup.string().required("Please enter a name"),
+  name: yup.string().required(),
 });
 
 
 
 export const validationShema = yup.object().shape({
-  name: yup.string().required("Please enter a name"),
+  name: yup.string().required(),
   tel: yup
     .string()
-    .matches(/^\+380\d{9}$/, "Please enter a valid phone number"),
+    .matches(/^\+380\d{9}$/),
   adress: yup
     .string()
-    .required("Please enter a address")
-    .min(8, "The address is short, enter more than 8 characters"),
+    .required()
+    .min(8),
  
 });

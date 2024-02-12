@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import { UserContext } from "../../context/UserInfoContext";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { validationShemaName } from "../../validationShema";
 import Input from "../../components/Input/Input";
@@ -17,7 +17,6 @@ const Login = () => {
 
   const {
     handleSubmit,
-    formState: { errors },
     reset,
     control,
   } = useForm({
@@ -40,20 +39,8 @@ const Login = () => {
       <div className="bg-log">
         <form className="form" onSubmit={handleSubmit(handleSubmitLogin)}>
           <div className="input-container">
-            <Controller
-              name="name"
-              control={control}
-              render={({ field }) => (
-                <Input
-                  {...field}
-                  type="text"
-                  label="User Name"
-                  placeholder="Name"
-                />
-              )}
-            />
-          </div>
-          {errors.name && <p className="errors">{errors.name.message}</p>}
+            <Input control={control} name='name' label="User Name" message="Please enter a name"/>    
+          </div>        
           <Button buttonText="Log In" className="btn-login" />
         </form>
       </div>

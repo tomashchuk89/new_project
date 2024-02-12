@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Input from "../../components/Input/Input";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { validationShema } from "../../validationShema";
 import { UserContext } from "../../context/UserInfoContext";
@@ -30,7 +30,6 @@ const OrderNew = () => {
   const { names } = useContext(UserContext);
   const {
     handleSubmit,
-    formState: { errors },
     reset,
     control,
   } = useForm({
@@ -45,6 +44,7 @@ const OrderNew = () => {
 
   const onSubmit = (data) => {
     const { adress, name, tel, checkbox } = data;
+    console.log(data)
     const cartData = [];
     const newOrder = {
       address: adress,
@@ -88,68 +88,44 @@ const OrderNew = () => {
     return <Loader />;
   }
 
-  const handleCheckboxChange = (event) => {
-    setIsChecked(event.target.checked);
-  };
-
   return (
     <div>
       <Header />
       <h1>Ready to order? Let's go!</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="input-container">
-          <Controller
-            name="name"
+          <Input
             control={control}
-            render={({ field }) => (
-              <Input {...field} label="First Name" placeholder="Name" />
-            )}
+            name="name"
+            label="First Name"
+            message="Please enter a name"
           />
         </div>
-        {errors.name && <p className="errors">{errors.name.message}</p>}
 
         <div className="input-container">
-          <Controller
-            name="tel"
+          <Input
             control={control}
-            render={({ field }) => (
-              <Input
-                {...field}
-                label="Phone number"
-                placeholder="+38067777777"
-              />
-            )}
+            name="tel"
+            label="Phone number"
+            message="Please enter a valid phone number"
           />
         </div>
-        {errors.tel && <p className="errors">{errors.tel.message}</p>}
+
         <div className="input-container">
-          <Controller
-            name="adress"
+          <Input
             control={control}
-            render={({ field }) => (
-              <Input
-                {...field}
-                placeholder="m.Kyiv, vul. Stecenko 17, ap 250"
-                label="Address"
-              />
-            )}
+            name="adress"
+            label="Address"
+            message="The address is short, enter more than 8 characters"
           />
         </div>
         {errors.adress && <p className="errors">{errors.adress.message}</p>}
         <div className="check-box">
-          <Controller
-            name="checkbox"
+          <CheckBox
             control={control}
-            render={({ field }) => (
-              <CheckBox
-                {...field}
-                onChange={(e) => {
-                  field.onChange(e);
-                  handleCheckboxChange(e);
-                }}
-                checked={isChecked}
-              />
-            )}
+            name="checkbox"
+            label="Whan to yo give your order priority?"
+            onClick={setIsChecked}
           />
         </div>
         <Button
